@@ -250,8 +250,9 @@ const Contained = ({ spanWidth }) => {
           viewport={{ root: "app", once: true, amount: "all" }}
         />
       </Box>
-      {section2part === 0 && <Scene1 />}
-      {section2part === 1 && <Scene2 />}
+      {/* {section2part === 0 && <Scene1 />}
+      {section2part === 1 && <Scene2 />} */}
+      <Scene1 />
       <Box
         id="ghost"
         ref={ghost}

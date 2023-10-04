@@ -1,4 +1,4 @@
-import { useRef, Suspense } from "react";
+import { useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import {
   useGLTF,
@@ -8,38 +8,54 @@ import {
   Decal,
   Environment,
   Center,
-  Loader,
   Float,
+  AdaptiveEvents,
+  AdaptiveDpr,
 } from "@react-three/drei";
 import { easing } from "maath";
 import { useSnapshot } from "valtio";
 import { state } from "./store";
 
-export const App = ({ position = [0, 0, 2.5], fov = 25 }) => (
-  <>
-    <Canvas
-      className="canvas"
-      style={{ zIndex: "99", position: "fixed", top: 0, left: 0 }}
-      shadows
-      camera={{ position, fov }}
-      gl={{ preserveDrawingBuffer: true }}
-      eventSource={document.getElementById("root")}
-      eventPrefix="client"
-    >
-      {/* <Suspense fallback={null}> */}
-      <ambientLight intensity={0.5} />
-      <Environment files="https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/potsdamer_platz_1k.hdr" />
-      <CameraRig>
-        {/* <Backdrop /> */}
-        <Center>
-          <Shirt />
-        </Center>
-      </CameraRig>
-      {/* </Suspense> */}
-    </Canvas>
-    {/* <Loader /> */}
-  </>
-);
+import { useSelector } from "react-redux";
+import { Items as Scene2 } from "../Scene2/App";
+
+export const App = ({ position = [0, 0, 2.5], fov = 25 }) => {
+  const section2part = useSelector((state) => state.section2.part);
+  return (
+    <>
+      <Canvas
+        className="canvas"
+        style={{ zIndex: "99", position: "fixed", top: 0, left: 0 }}
+        shadows
+        // camera={{ position, fov }}
+        gl={{ preserveDrawingBuffer: true }}
+        onPointerMissed={() => (imgState.clicked = null)}
+        eventSource={document.getElementById("root")}
+        eventPrefix="client"
+        gl={{ antialias: false }}
+        dpr={[1, 1.5]}
+      >
+        {section2part === 0 && (
+          <>
+            <ambientLight intensity={0.5} />
+            <Environment files="https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/potsdamer_platz_1k.hdr" />
+            <CameraRig>
+              {/* <Backdrop /> */}
+              <Center>
+                <Shirt />
+              </Center>
+            </CameraRig>
+          </>
+        )}
+        {section2part === 1 && <Scene2 />}
+        <AdaptiveDpr pixelated />
+        <AdaptiveEvents />
+        {/* </Suspense> */}
+      </Canvas>
+      {/* <Loader /> */}
+    </>
+  );
+};
 
 function Backdrop() {
   const shadows = useRef();

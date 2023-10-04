@@ -4,6 +4,7 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Image, ScrollControls, Scroll, useScroll } from "@react-three/drei";
 import { proxy, useSnapshot } from "valtio";
 import { imgState } from "./store";
+import { useTexture } from "@react-three/drei";
 
 const damp = THREE.MathUtils.damp;
 const material = new THREE.LineBasicMaterial({ color: "white" });
@@ -118,7 +119,7 @@ function Item({ index, position, scale, c = new THREE.Color(), ...props }) {
   );
 }
 
-function Items({ w = 0.7, gap = 0.15 }) {
+export function Items({ w = 0.7, gap = 0.15 }) {
   const { urls } = useSnapshot(imgState);
   const { width } = useThree((state) => state.viewport);
   const xW = w + gap;
@@ -151,3 +152,18 @@ export const App = () => {
     </Canvas>
   );
 };
+
+// [
+//   "/1.png",
+//   "/2.png",
+//   "/3.png",
+//   "/4.png",
+//   "/5.png",
+//   "/6.png",
+//   "/7.png",
+//   "/8.png",
+//   "/9.png",
+//   "/10.png",
+//   "/11.png",
+//   "/12.png",
+// ].forEach(useTexture.preload);
