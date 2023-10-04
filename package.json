@@ -1,0 +1,49 @@
+{
+  "name": "vitest",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@motionone/utils": "^10.16.3",
+    "@mui/icons-material": "^5.10.3",
+    "@mui/material": "^5.10.5",
+    "@pmndrs/branding": "0.0.8",
+    "@react-three/drei": "9.74.8",
+    "@react-three/fiber": "8.13.1",
+    "@reduxjs/toolkit": "^1.8.5",
+    "@types/three": "0.152.1",
+    "framer-motion": "10.0.1",
+    "maath": "0.6.0",
+    "react-colorful": "5.6.1",
+    "react-icons": "4.7.1",
+    "react-parallax-tilt": "^1.7.67",
+    "react-redux": "^8.0.2",
+    "react-tsparticles": "^2.3.1",
+    "resize-observer-polyfill": "^1.5.1",
+    "sass": "^1.54.9",
+    "three": "0.153.0",
+    "tsparticles-preset-stars": "^2.3.1",
+    "typewriter-effect": "^2.19.0",
+    "valtio": "1.10.3"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.37",
+    "@types/react-dom": "^18.0.11",
+    "@vitejs/plugin-react": "^4.0.0",
+    "eslint": "^8.38.0",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.3.4",
+    "vite": "^4.3.9"
+  }
+}
