@@ -24,8 +24,8 @@ import { sectionIndex } from "../../Features/globalUiVars/currentSection";
 import { Box } from "@mui/material";
 import Trigger from "../trigger/Trigger";
 import ResumeElement from "./ResumeElement";
-import { Scene1 } from "../Canvas/Scene1/index";
-import { Scene2 } from "../Canvas/Scene2/index";
+// import { Scene1 } from "../Canvas/Scene1/index";
+// import { Scene2 } from "../Canvas/Scene2/index";
 
 const cont = {
   // init: {
@@ -252,7 +252,7 @@ const Contained = ({ spanWidth }) => {
       </Box>
       {/* {section2part === 0 && <Scene1 />}
       {section2part === 1 && <Scene2 />} */}
-      <Scene1 />
+      {/* <Scene1 /> */}
       <Box
         id="ghost"
         ref={ghost}

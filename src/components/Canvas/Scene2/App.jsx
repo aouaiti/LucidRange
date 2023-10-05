@@ -132,7 +132,7 @@ export function Items({ w = 0.7, gap = 0.15 }) {
       <Minimap />
       <Scroll>
         {
-          urls.map((url, i) => <Item key={i} index={i} position={[i * xW, 0, -18]} scale={[w, 4, 1]} url={url} />) /* prettier-ignore */
+          urls.map((url, i) => <Item key={i} index={i} position={[i * xW, 0, -16]} scale={[w, 4, 1]} url={url} />) /* prettier-ignore */
         }
       </Scroll>
     </ScrollControls>
@@ -146,7 +146,7 @@ export const App = () => {
       gl={{ antialias: false }}
       dpr={[1, 1.5]}
       onPointerMissed={() => (imgState.clicked = null)}
-      style={{ zIndex: 999, position: "fixed", top: "0", left: "0" }}
+      style={{ zIndex: 9, position: "fixed", top: "0", left: "0" }}
     >
       {visible && <Items />}
     </Canvas>

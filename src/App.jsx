@@ -14,6 +14,7 @@ import { toggleQuality } from "./Features/globalUiVars/quality";
 import IconButton from "@mui/material/IconButton";
 import AppShortcutIcon from "@mui/icons-material/AppShortcut";
 import { Loader } from "@react-three/drei";
+import { Scene1 } from "./components/Canvas/Scene1/index";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -82,6 +83,7 @@ export default function App() {
             <AppShortcutIcon sx={{ fontSize: "3rem" }} />
           </IconButton>
         </Box>
+        <Scene1 />
       </Suspense>
       <Loader />
     </>

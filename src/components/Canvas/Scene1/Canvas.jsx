@@ -37,14 +37,19 @@ export const App = memo(({ position = [0, 0, 2.5], fov = 25 }) => {
     <>
       <Canvas
         className="canvas"
-        style={{ zIndex: "99", position: "fixed", top: 0, left: 0 }}
+        style={{
+          zIndex: `${section2part === 0 ? "99" : 999}`,
+          position: "fixed",
+          top: 0,
+          left: 0,
+        }}
         shadows
         camera={{ position, fov }}
-        // gl={{ preserveDrawingBuffer: true }}
+        gl={{ preserveDrawingBuffer: true, antialias: false }}
         // onPointerMissed={() => (imgState.clicked = null)}
         // eventSource={document.getElementById("root")}
         // eventPrefix="client"
-        gl={{ antialias: false }}
+        // gl={{ antialias: false }}
         dpr={[1, 1.5]}
       >
         <ambientLight intensity={0.5} />
@@ -54,9 +59,7 @@ export const App = memo(({ position = [0, 0, 2.5], fov = 25 }) => {
             <>
               {part === 0 && (
                 <>
-                  {/* <Environment files="https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/potsdamer_platz_1k.hdr" /> */}
                   <CameraRig>
-                    {/* <Backdrop /> */}
                     <Center>
                       <Shirt />
                     </Center>
@@ -141,6 +144,8 @@ function Shirt(props) {
   useFrame((state, delta) =>
     easing.dampC(materials.lambert1.color, snap.color, 0.25, delta)
   );
+  const currentSection = useSelector((state) => state.currentSection.Section);
+  const section2part = useSelector((state) => state.section2.part);
   return (
     <Float
       speed={1} // Animation speed, defaults to 1
@@ -155,6 +160,8 @@ function Shirt(props) {
         material-roughness={1}
         {...props}
         dispose={null}
+        // material-transparent={true}
+        // material-opacity={currentSection === 2 && section2part === 0 ? 1 : 0}
       >
         <Decal
           position={[0, 0.04, 0.15]}
