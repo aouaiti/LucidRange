@@ -43,12 +43,12 @@ canvas {
   position: fixed;
   top: 0;
   left: 0;
-  opacity: 0;
+  opacity: 1;
   touch-action: none;
   width: 100vw;
   height: 100vh;
-  animation: fade-in 2.5s ease 1.5s forwards;
-  -webkit-animation: fade-in 2.5s ease 1.5s forwards;
+  /* animation: fade-in 2.5s ease 1.5s forwards;
+  -webkit-animation: fade-in 2.5s ease 1.5s forwards; */
 }
 
 /* header {

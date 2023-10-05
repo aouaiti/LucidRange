@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import {
   useGLTF,
@@ -11,43 +11,62 @@ import {
   Float,
   AdaptiveEvents,
   AdaptiveDpr,
+  Bvh,
 } from "@react-three/drei";
 import { easing } from "maath";
 import { useSnapshot } from "valtio";
 import { state } from "./store";
+import { memo } from "react";
 
 import { useSelector } from "react-redux";
 import { Items as Scene2 } from "../Scene2/App";
 
-export const App = ({ position = [0, 0, 2.5], fov = 25 }) => {
+export const App = memo(({ position = [0, 0, 2.5], fov = 25 }) => {
+  const currentSection = useSelector((state) => state.currentSection.Section);
   const section2part = useSelector((state) => state.section2.part);
+  const [part, setPart] = useState(-1);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setPart(section2part);
+    }, 1500);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [section2part]);
   return (
     <>
       <Canvas
         className="canvas"
         style={{ zIndex: "99", position: "fixed", top: 0, left: 0 }}
         shadows
-        // camera={{ position, fov }}
-        gl={{ preserveDrawingBuffer: true }}
-        onPointerMissed={() => (imgState.clicked = null)}
-        eventSource={document.getElementById("root")}
-        eventPrefix="client"
+        camera={{ position, fov }}
+        // gl={{ preserveDrawingBuffer: true }}
+        // onPointerMissed={() => (imgState.clicked = null)}
+        // eventSource={document.getElementById("root")}
+        // eventPrefix="client"
         gl={{ antialias: false }}
         dpr={[1, 1.5]}
       >
-        {section2part === 0 && (
-          <>
-            <ambientLight intensity={0.5} />
-            <Environment files="https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/potsdamer_platz_1k.hdr" />
-            <CameraRig>
-              {/* <Backdrop /> */}
-              <Center>
-                <Shirt />
-              </Center>
-            </CameraRig>
-          </>
-        )}
-        {section2part === 1 && <Scene2 />}
+        <ambientLight intensity={0.5} />
+        <directionalLight intensity={0.5} position={[3, 3, 3]} />
+        <Bvh firstHitOnly>
+          {currentSection === 2 && (
+            <>
+              {part === 0 && (
+                <>
+                  {/* <Environment files="https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/potsdamer_platz_1k.hdr" /> */}
+                  <CameraRig>
+                    {/* <Backdrop /> */}
+                    <Center>
+                      <Shirt />
+                    </Center>
+                  </CameraRig>
+                </>
+              )}
+              {part === 1 && <Scene2 />}
+            </>
+          )}
+        </Bvh>
         <AdaptiveDpr pixelated />
         <AdaptiveEvents />
         {/* </Suspense> */}
@@ -55,7 +74,7 @@ export const App = ({ position = [0, 0, 2.5], fov = 25 }) => {
       {/* <Loader /> */}
     </>
   );
-};
+});
 
 function Backdrop() {
   const shadows = useRef();

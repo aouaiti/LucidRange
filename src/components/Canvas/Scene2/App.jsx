@@ -42,7 +42,7 @@ function Minimap() {
           key={i}
           geometry={geometry}
           material={material}
-          position={[i * 0.06 - urls.length * 0.03, -height / 2 + 0.6, 0]}
+          position={[i * 0.06 - urls.length * 0.03, -height / 0.3 + 0.6, -15]}
         />
       ))}
     </group>
@@ -132,7 +132,7 @@ export function Items({ w = 0.7, gap = 0.15 }) {
       <Minimap />
       <Scroll>
         {
-          urls.map((url, i) => <Item key={i} index={i} position={[i * xW, 0, 0]} scale={[w, 4, 1]} url={url} />) /* prettier-ignore */
+          urls.map((url, i) => <Item key={i} index={i} position={[i * xW, 0, -18]} scale={[w, 4, 1]} url={url} />) /* prettier-ignore */
         }
       </Scroll>
     </ScrollControls>
@@ -153,17 +153,17 @@ export const App = () => {
   );
 };
 
-// [
-//   "/1.png",
-//   "/2.png",
-//   "/3.png",
-//   "/4.png",
-//   "/5.png",
-//   "/6.png",
-//   "/7.png",
-//   "/8.png",
-//   "/9.png",
-//   "/10.png",
-//   "/11.png",
-//   "/12.png",
-// ].forEach(useTexture.preload);
+[
+  "/1.jpg",
+  "/2.jpg",
+  "/3.jpg",
+  "/4.jpg",
+  "/5.jpg",
+  "/6.jpg",
+  "/7.jpg",
+  "/8.jpg",
+  "/9.jpg",
+  "/10.jpg",
+  "/11.jpg",
+  "/12.jpg",
+].forEach(useTexture.preload);
