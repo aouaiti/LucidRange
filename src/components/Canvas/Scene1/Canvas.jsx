@@ -38,7 +38,9 @@ export const App = memo(({ position = [0, 0, 2.5], fov = 25 }) => {
       <Canvas
         className="canvas"
         style={{
-          zIndex: `${section2part === 0 ? "99" : 999}`,
+          zIndex: `${
+            currentSection !== 2 ? -1 : section2part === 0 ? 99 : 999
+          }`,
           position: "fixed",
           top: 0,
           left: 0,

@@ -45,7 +45,7 @@ function Minimap() {
           key={i}
           geometry={geometry}
           material={material}
-          position={[i * 0.06 - urls.length * 0.03, -height / 0.3 + 0.6, -15]}
+          position={[i * 0.06 - urls.length * 0.03, -height / 0.3 + 0.6, -12]}
         />
       ))}
     </group>
@@ -136,8 +136,9 @@ export function Items({ w = 0.7, gap = 0.15 }) {
   return (
     <ScrollControls
       horizontal
-      damping={0.1}
+      damping={0.2}
       pages={(width - xW + urls.length * xW) / width}
+      distance={0.2}
     >
       <Minimap />
       <Scroll>

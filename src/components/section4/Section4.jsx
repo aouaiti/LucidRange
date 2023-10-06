@@ -65,12 +65,12 @@ const Section4 = () => {
             margin: "0 10px",
           }}
         >
-          <img
+          {/* <img
             width="100"
             height="100"
             src="/lr-cropped.png"
             style={{ filter: `invert(${themeMode === "light" ? "0" : "1"})` }}
-          />
+          /> */}
         </Box>
         <Box
           component={motion.div}
@@ -130,13 +130,13 @@ const Section4 = () => {
             order: { xs: "1", sm: "2" },
           }}
         >
-          <img
+          {/* <img
             width="100"
             height="100"
             // objectFit="cover"
             src="/aouaiti.jpg"
             style={{ borderRadius: "50%" }}
-          />
+          /> */}
         </Box>
         <Box
           component={motion.div}
