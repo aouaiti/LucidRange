@@ -28,7 +28,7 @@ export const App = memo(({ position = [0, 0, 2.5], fov = 25 }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setPart(section2part);
-    }, 1500);
+    }, 1000);
     return () => {
       clearTimeout(timer);
     };
@@ -138,12 +138,22 @@ function CameraRig({ children }) {
 }
 
 function Shirt(props) {
+  const tShirt = useRef();
+  const decal = useRef();
   const snap = useSnapshot(state);
   const texture = useTexture(`/${snap.decal}.png`);
   const { nodes, materials } = useGLTF("/shirt_baked_collapsed.glb");
-  useFrame((state, delta) =>
-    easing.dampC(materials.lambert1.color, snap.color, 0.25, delta)
-  );
+  useFrame((state, delta) => {
+    easing.dampC(materials.lambert1.color, snap.color, 0.25, delta);
+    section2part === 0 &&
+      easing.damp(tShirt.current.material, "opacity", 1, 0.25, delta) &&
+      easing.damp(decal.current.material, "opacity", 1, 0.25, delta);
+    section2part !== 0 &&
+      easing.damp(tShirt.current.material, "opacity", 0, 0.25, delta) &&
+      easing.damp(decal.current.material, "opacity", 0, 0.25, delta);
+    // console.log(tShirt.current.material.opacity);
+    // console.log(decal.current);
+  });
   const currentSection = useSelector((state) => state.currentSection.Section);
   const section2part = useSelector((state) => state.section2.part);
   return (
@@ -154,21 +164,26 @@ function Shirt(props) {
       // floatingRange={[1, 10]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
     >
       <mesh
+        ref={tShirt}
         castShadow
         geometry={nodes.T_Shirt_male.geometry}
         material={materials.lambert1}
         material-roughness={1}
         {...props}
         dispose={null}
-        // material-transparent={true}
+        material-transparent={true}
         // material-opacity={currentSection === 2 && section2part === 0 ? 1 : 0}
       >
         <Decal
+          ref={decal}
           position={[0, 0.04, 0.15]}
           rotation={[0, 0, 0]}
           scale={0.15}
           map={texture}
           map-anisotropy={16}
+          transparent={true}
+          // opacity={0.5}
+          // material-transparent={true}
         />
       </mesh>
     </Float>

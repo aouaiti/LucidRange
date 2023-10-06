@@ -11,6 +11,7 @@ import { state } from "./store";
 import { useSelector } from "react-redux";
 
 export function Overlay() {
+  const currentSection = useSelector((state) => state.currentSection.Section);
   const section2part = useSelector((state) => state.section2.part);
   const snap = useSnapshot(state);
   const transition = { type: "spring", duration: 0.4 };
@@ -58,7 +59,7 @@ export function Overlay() {
           <AiOutlineShopping size="3em" />
         </motion.div>
       </motion.header> */}
-      {section2part === 0 && (
+      {section2part === 0 && currentSection === 2 && (
         <AnimatePresence mode={"wait"}>
           {snap.intro ? (
             <motion.section key="main" {...config} className="canvasOverlay">

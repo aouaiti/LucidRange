@@ -6,6 +6,9 @@ import { proxy, useSnapshot } from "valtio";
 import { imgState } from "./store";
 import { useTexture } from "@react-three/drei";
 
+import { useSelector } from "react-redux";
+import { easing } from "maath";
+
 const damp = THREE.MathUtils.damp;
 const material = new THREE.LineBasicMaterial({ color: "white" });
 const geometry = new THREE.BufferGeometry().setFromPoints([
@@ -105,12 +108,19 @@ function Item({ index, position, scale, c = new THREE.Color(), ...props }) {
       c.set(hovered || clicked === index ? "white" : "#aaa"),
       hovered ? 0.3 : 0.1
     );
+    section2part === 1 &&
+      easing.damp(ref.current.position, "y", 0, 0.25, delta);
+    section2part !== 1 &&
+      easing.damp(ref.current.position, "y", 10, 0.25, delta);
+    // console.log(ref.current.material);
   });
+  const section2part = useSelector((state) => state.section2.part);
   return (
     <Image
       ref={ref}
       {...props}
       position={position}
+      position-y={10}
       scale={scale}
       onClick={click}
       onPointerOver={over}
