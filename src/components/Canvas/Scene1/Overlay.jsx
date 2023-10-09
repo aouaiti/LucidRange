@@ -38,7 +38,7 @@ export function Overlay() {
         left: 0,
         width: "100%",
         height: "100%",
-        zIndex: `${currentSection !== 2 ? -1 : 999}`,
+        zIndex: `${currentSection !== 2 ? -1 : section2part === 0 ? 99 : 9}`,
         // transition: "all 0.4s ease-in-out",
       }}
     >
