@@ -39,12 +39,10 @@ const animation = {
 
 const Back = ({ trigger, spanWidth, msg }) => {
   const section2part = useSelector((state) => state.section2.part);
-  const selectedResume = useSelector((state) => state.section2.selectedResume);
   const BGColor = useSelector((state) => state.section2.backgroundPalette);
   const currentSection = useSelector((state) => state.currentSection.Section);
   const lowerBackControls = useAnimation();
   const higherBackControls = useAnimation();
-  const lowerRef = useRef(null);
 
   useEffect(() => {
     if (section2part === trigger) {
@@ -61,21 +59,8 @@ const Back = ({ trigger, spanWidth, msg }) => {
     }
   }, [section2part]);
 
-  // useEffect(() => {
-  //   if (selectedResume.active) {
-  //     higherBackControls.start("anim1");
-  //     return;
-  //   }
-  //   if (selectedResume.close === "byBotton")
-  //     (async () => {
-  //       await higherBackControls.start("anim1");
-  //       // await higherBackControls.start("anim3");
-  //       await higherBackControls.start("anim2");
-  //     })();
-  // }, [selectedResume.active, selectedResume.close]);
-
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence mode='wait'>
       {section2part === trigger && currentSection === 2 && (
         <>
           <Box
@@ -88,11 +73,11 @@ const Back = ({ trigger, spanWidth, msg }) => {
           >
             <Box
               component={motion.div}
-              className="lowerRef"
+              className='lowerRef'
               // ref={lowerRef}
               variants={animation}
-              exit="anim4"
-              initial="anim1"
+              exit='anim4'
+              initial='anim1'
               animate={lowerBackControls}
               style={{
                 position: "absolute",
@@ -105,11 +90,11 @@ const Back = ({ trigger, spanWidth, msg }) => {
             />
             <Box
               component={motion.div}
-              className="HigherRef"
+              className='HigherRef'
               // ref={lowerRef}
               variants={animation}
-              exit="anim1"
-              initial="anim1"
+              exit='anim1'
+              initial='anim1'
               animate={higherBackControls}
               style={{
                 position: "absolute",

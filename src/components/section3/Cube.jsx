@@ -29,6 +29,7 @@ export default function Cube() {
   const rotation = useSelector((state) => state.section3.rotation);
   const themeMode = useSelector((state) => state.theme.mode);
   const currentSection = useSelector((state) => state.currentSection.Section);
+  const section2part = useSelector((state) => state.section2.part);
   const control = useAnimation();
   const rotateY = useMotionValue(350);
 
@@ -46,7 +47,8 @@ export default function Cube() {
   }, [currentSection]);
 
   useEffect(() => {
-    currentSection === 3 &&
+    currentSection === 2 &&
+      section2part === 2 &&
       control.start({ scale: 1, transition: { delay: 1 } });
     const timer = setTimeout(() => setIdle(true), 1000);
     return () => clearTimeout(timer);
@@ -77,54 +79,54 @@ export default function Cube() {
         animate={control}
         style={{ rotateY }}
         variants={animate}
-        initial="init"
-        exit="hidden"
+        initial='init'
+        exit='hidden'
       >
         <CubeFace
-          who="Labidi Abdrahmen"
-          desc="A hater"
-          msg="wait wait , did i mention that you are a loser ?"
+          who='Labidi Abdrahmen'
+          desc='A hater'
+          msg='wait wait , did i mention that you are a loser ?'
           rate={0.5}
-          url="/3abdou.webp"
+          url='/3abdou.webp'
           className={styles.upper}
         />
         <CubeFace
-          who="SLIM KHAMESSI"
-          desc="My mentor"
-          msg="Cool animation bro!"
+          who='SLIM KHAMESSI'
+          desc='My mentor'
+          msg='Cool animation bro!'
           rate={4}
-          url="/slim.webp"
+          url='/slim.webp'
           sx={{
             transform: "rotateY(0deg) translateZ(150px)",
           }}
         />
 
         <CubeFace
-          who="Labidi Abdrahmen"
-          desc="A hater"
-          msg="nothing special, and i can do far better"
+          who='Labidi Abdrahmen'
+          desc='A hater'
+          msg='nothing special, and i can do far better'
           rate={0.5}
-          url="/3abdou.webp"
+          url='/3abdou.webp'
           sx={{
             transform: "rotateY(90deg) translateZ(150px)",
           }}
         />
         <CubeFace
-          who="Ben ghrib houssem"
-          desc="A hater"
-          msg="The kabbalah is more important than dev"
+          who='Ben ghrib houssem'
+          desc='A hater'
+          msg='The kabbalah is more important than dev'
           rate={2}
-          url="/7oss.webp"
+          url='/7oss.webp'
           sx={{
             transform: "rotateY(180deg) translateZ(150px)",
           }}
         />
         <CubeFace
-          who="Labidi Abdrahmen"
-          desc="A hater"
+          who='Labidi Abdrahmen'
+          desc='A hater'
           msg="Even though i don't code am still a better dev than you"
           rate={1}
-          url="/3abdou.webp"
+          url='/3abdou.webp'
           sx={{
             transform: "rotateY(270deg) translateZ(150px)",
           }}

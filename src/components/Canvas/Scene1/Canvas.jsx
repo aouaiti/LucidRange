@@ -6,7 +6,6 @@ import {
   AccumulativeShadows,
   RandomizedLight,
   Decal,
-  Environment,
   Center,
   Float,
   AdaptiveEvents,
@@ -36,10 +35,16 @@ export const App = memo(({ position = [0, 0, 2.5], fov = 25 }) => {
   return (
     <>
       <Canvas
-        className="canvas"
+        className='canvas'
         style={{
           zIndex: `${
-            currentSection !== 2 ? -1 : section2part === 0 ? 99 : 999
+            currentSection !== 2
+              ? -1
+              : section2part === 0
+              ? 99
+              : section2part === 1
+              ? 999
+              : -1
           }`,
           position: "fixed",
           top: 0,
@@ -74,9 +79,7 @@ export const App = memo(({ position = [0, 0, 2.5], fov = 25 }) => {
         </Bvh>
         <AdaptiveDpr pixelated />
         <AdaptiveEvents />
-        {/* </Suspense> */}
       </Canvas>
-      {/* <Loader /> */}
     </>
   );
 });

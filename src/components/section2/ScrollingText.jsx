@@ -67,7 +67,7 @@ function ParallaxText({ children, baseVelocity = 100 }) {
       <Box
         component={motion.div}
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1, transition: { delay: 0 } }}
+        animate={{ opacity: 1, transition: { delay: 1.5 } }}
         exit={{ opacity: 0 }}
         className={styles.scroller}
         style={{
@@ -77,11 +77,11 @@ function ParallaxText({ children, baseVelocity = 100 }) {
           top: `${baseVelocity < 0 ? "10vh" : "calc(90vh)"}`,
         }}
       >
-        <Typography variant="h2">{children} </Typography>
-        <Typography variant="h2">{children} </Typography>
-        <Typography variant="h2">{children} </Typography>
-        <Typography variant="h2">{children} </Typography>
-        <Typography variant="h2">{children} </Typography>
+        <Typography variant='h2'>{children} </Typography>
+        <Typography variant='h2'>{children} </Typography>
+        <Typography variant='h2'>{children} </Typography>
+        <Typography variant='h2'>{children} </Typography>
+        <Typography variant='h2'>{children} </Typography>
       </Box>
     </Box>
   );

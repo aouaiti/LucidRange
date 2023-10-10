@@ -19,13 +19,10 @@ import ResizeObserver from "resize-observer-polyfill";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { currentPart } from "../../Features/globalUiVars/section2";
-import { selectResume } from "../../Features/globalUiVars/section2";
 import { sectionIndex } from "../../Features/globalUiVars/currentSection";
 import { Box } from "@mui/material";
 import Trigger from "../trigger/Trigger";
 import ResumeElement from "./ResumeElement";
-// import { Scene1 } from "../Canvas/Scene1/index";
-// import { Scene2 } from "../Canvas/Scene2/index";
 
 const cont = {
   // init: {
@@ -33,14 +30,13 @@ const cont = {
   // },
   leave: {
     // opacity: 0,
-    y: 900,
+    y: 0,
   },
 };
 const child = {
   init: {
-    y: -600,
-    opacity: 0.2,
-    filter: "grayscale(100%)",
+    y: 0,
+    opacity: 0,
   },
   show: {
     y: 0,
@@ -55,46 +51,10 @@ const Contained = ({ spanWidth }) => {
   const dispatchPart = useDispatch();
   /////////////////////////////////////// end redux stuff
   const container = useRef(null);
-  const resumeRefs = useRef([]);
   /////////////////////////////////////// resume click handlers
 
   /////////////////////////////////////// Cursor mutations
 
-  //if user is hovering an icon, cursor locks at it
-  const [hoveringResume, setHoveringResume] = useState(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [[rotateX, rotateY, scaleX, scaleY], setMovementAnimation] = useState([
-    0, 0, 1, 1,
-  ]);
-  const xPos = useMotionValue(0);
-  const yPos = useMotionValue(0);
-  const xSpring = useSpring(xPos, { damping: 25, stiffness: 700 });
-  const ySpring = useSpring(yPos, { damping: 25, stiffness: 700 });
-  xPos.set(mousePosition.x);
-  yPos.set(mousePosition.y);
-
-  const hoverResume = useCallback((resumeRef, cursorStyle) => {
-    if (!resumeRef) {
-      setHoveringResume(null);
-      return;
-    }
-    const { left, top } = resumeRef.getBoundingClientRect();
-    const { left: leftContainer, top: topContainer } =
-      container.current.getBoundingClientRect();
-
-    setHoveringResume(cursorStyle);
-    setMousePosition({
-      x: left - leftContainer + 24,
-      y: top - topContainer + 24,
-    });
-  }, []);
-  useEffect(() => {
-    if (selectedResume.active) setHoveringResume(null);
-  }, [selectedResume.active]);
-  // useEffect(() => {
-  //   if (!selectedResume.active) setHoveringResume(null);
-  //   console.log(selectedResume.active);
-  // }, [selectedResume.active]);
   /////////////////////////////////// Triggers to sections
   const trigger = useRef(null);
   const triggerInit = useRef(null);
@@ -200,13 +160,13 @@ const Contained = ({ spanWidth }) => {
   return (
     <>
       <Box
-        id="#customBG"
+        id='#customBG'
         component={motion.div}
         ref={container}
         variants={cont}
-        initial="init"
-        animate="show"
-        exit="leave"
+        initial='init'
+        animate='show'
+        exit='leave'
         className={styles.custom_cursor}
         style={{
           position: "fixed",
@@ -224,24 +184,11 @@ const Contained = ({ spanWidth }) => {
         <Trigger
           ref={triggerInit}
           variants={child}
-          initial="init"
-          animate="show"
+          initial='init'
+          animate='show'
           viewport={{ root: "app", once: true, amount: "all" }}
         />
-        <Box
-          component={motion.div}
-          className={`${styles.cursor} ${
-            hoveringResume ? styles[hoveringResume] : ""
-          }`}
-          style={{
-            left: xSpring,
-            top: ySpring,
-          }}
-          animate={{
-            translateX: hoveringResume ? -30 : -16,
-            translateY: hoveringResume ? -30 : -16,
-          }}
-        />
+
         <ResumeElement spanWidth={spanWidth} />
         <Trigger
           ref={trigger}
@@ -250,11 +197,8 @@ const Contained = ({ spanWidth }) => {
           viewport={{ root: "app", once: true, amount: "all" }}
         />
       </Box>
-      {/* {section2part === 0 && <Scene1 />}
-      {section2part === 1 && <Scene2 />} */}
-      {/* <Scene1 /> */}
       <Box
-        id="ghost"
+        id='ghost'
         ref={ghost}
         style={{
           position: "absolute",
@@ -275,7 +219,7 @@ const Contained = ({ spanWidth }) => {
           scaleY: scaleProgress,
           zIndex: "99",
         }}
-        className="progress-bar"
+        className='progress-bar'
       />
     </>
   );

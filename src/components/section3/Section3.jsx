@@ -24,6 +24,7 @@ const Section3 = () => {
   // const quality = useSelector((state) => state.changeQuality.quality);
   const themeMode = useSelector((state) => state.theme.mode);
   const currentSection = useSelector((state) => state.currentSection.Section);
+  const section2part = useSelector((state) => state.section2.part);
   const { scrollYProgress } = useScroll();
   const smoothScroll = useSpring(scrollYProgress, {
     damping: 50,
@@ -31,11 +32,13 @@ const Section3 = () => {
   });
   return (
     <AnimatePresence>
-      {currentSection === 3 && (
+      {currentSection === 2 && section2part == 2 && (
         <>
           <Box
             style={{
               position: "fixed",
+              top: "0%",
+              left: "0%",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
@@ -46,30 +49,17 @@ const Section3 = () => {
             <Box
               component={motion.div}
               variants={animateImage}
-              initial="init"
-              animate="animate"
-              exit="hidden"
-            >
-              {/* <Image
-                layout="fill"
-                objectFit="cover"
-                alt="back"
-                src="/HUDBack6.jpg"
-                placeholder="blur"
-                blurDataURL="data:image/webp;base64,UklGRnQCAABXRUJQVlA4WAoAAAAgAAAABQAAAwAASUNDUBgCAAAAAAIYAAAAAAIQAABtbnRyUkdCIFhZWiAAAAAAAAAAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAAHRyWFlaAAABZAAAABRnWFlaAAABeAAAABRiWFlaAAABjAAAABRyVFJDAAABoAAAAChnVFJDAAABoAAAAChiVFJDAAABoAAAACh3dHB0AAAByAAAABRjcHJ0AAAB3AAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAFgAAAAcAHMAUgBHAEIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFhZWiAAAAAAAABvogAAOPUAAAOQWFlaIAAAAAAAAGKZAAC3hQAAGNpYWVogAAAAAAAAJKAAAA+EAAC2z3BhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABYWVogAAAAAAAA9tYAAQAAAADTLW1sdWMAAAAAAAAAAQAAAAxlblVTAAAAIAAAABwARwBvAG8AZwBsAGUAIABJAG4AYwAuACAAMgAwADEANlZQOCA2AAAAsAEAnQEqBgAEAAOAWiWoAnQA9IG1bgD+8bc/o51GRFx4G0UdX+RptYn5gkb1jBEpddNl7gAA"
-                style={{
-                  filter: `${themeMode === "dark" ? "" : "hue-rotate(346deg)"}`,
-                  transition: "all 1s ease 0s",
-                }}
-              /> */}
-            </Box>
+              initial='init'
+              animate='animate'
+              exit='hidden'
+            ></Box>
             <InnerHUD scrollProgress={smoothScroll} />
             <OuterHUD scrollProgress={smoothScroll} />
             <Cube />
           </Box>
           <Box
-            className="ghost"
-            style={{ height: `${currentSection === 3 ? "500vh" : "100vh"}` }}
+            className='ghost'
+            // style={{ height: `${currentSection === 3 ? "500vh" : "100vh"}` }}
           />
         </>
       )}

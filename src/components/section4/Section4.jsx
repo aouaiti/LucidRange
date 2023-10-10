@@ -75,37 +75,37 @@ const Section4 = () => {
         <Box
           component={motion.div}
           variants={textContainer}
-          initial="init"
-          animate={`${currentSection === 4 ? "animate" : "init"}`}
+          initial='init'
+          animate={`${currentSection === 3 ? "animate" : "init"}`}
           sx={{ textAlign: "left" }}
         >
           <Typography
             component={motion.p}
             variants={textAnimation}
             sx={st}
-            variant="h6"
+            variant='h6'
           >
-            Project name: Lazy Resume
+            Project name: Lucid Range
           </Typography>
           <Typography
             component={motion.p}
             variants={textAnimation}
             sx={st}
-            variant="h6"
+            variant='h6'
           >
             <a
-              target="_blank"
-              rel="noreferrer"
-              href="https://github.com/aouaiti/LazyResume"
+              target='_blank'
+              rel='noreferrer'
+              href='https://github.com/aouaiti/Lucidrange'
             >
-              Github repo: /LazyResume
+              Github repo: /Lucidrange
             </a>
           </Typography>
           <Typography
             component={motion.p}
             variants={textAnimation}
             sx={st}
-            variant="h6"
+            variant='h6'
           >
             Framework: NextJs
           </Typography>
@@ -142,14 +142,14 @@ const Section4 = () => {
           component={motion.div}
           sx={{ textAlign: "right", order: { xs: "2", sm: "1" } }}
           variants={textContainer}
-          initial="init"
-          animate={`${currentSection === 4 ? "animate" : "init"}`}
+          initial='init'
+          animate={`${currentSection === 3 ? "animate" : "init"}`}
         >
           <Typography
             component={motion.p}
             variants={textAnimation}
             sx={st}
-            variant="h6"
+            variant='h6'
           >
             Project made by AOUAITI
           </Typography>
@@ -157,12 +157,12 @@ const Section4 = () => {
             component={motion.p}
             variants={textAnimation}
             sx={st}
-            variant="h6"
+            variant='h6'
           >
             <a
-              target="_blank"
-              rel="noreferrer"
-              href="https://github.com/aouaiti"
+              target='_blank'
+              rel='noreferrer'
+              href='https://github.com/aouaiti'
             >
               Github: /aouaiti
             </a>
@@ -171,12 +171,12 @@ const Section4 = () => {
             component={motion.p}
             variants={textAnimation}
             sx={st}
-            variant="h6"
+            variant='h6'
           >
             <a
-              target="_blank"
-              rel="noreferrer"
-              href="https://www.facebook.com/magnoss"
+              target='_blank'
+              rel='noreferrer'
+              href='https://www.facebook.com/magnoss'
             >
               FaceBook: /magnoss
             </a>
@@ -186,5 +186,5 @@ const Section4 = () => {
     </Box>
   );
 };
-Section4.displayName = "LazyResume";
+Section4.displayName = "Lucid Range";
 export default Section4;
