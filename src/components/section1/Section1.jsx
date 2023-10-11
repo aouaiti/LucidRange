@@ -1,4 +1,4 @@
-import { useRef, memo } from "react";
+import { useRef, memo, useLayoutEffect, useEffect } from "react";
 // import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { Box } from "@mui/material";
@@ -6,6 +6,8 @@ import { useSelector } from "react-redux";
 import Trigger from "../trigger/Trigger";
 import Typewriter from "typewriter-effect";
 import Typography from "@mui/material/Typography";
+import { Gradient } from "./lib/Gradient";
+import "./gradient.css";
 
 const blurDataArr = {
   url1: "data:image/webp;base64,UklGRkoEAABXRUJQVlA4WAoAAAAgAAAAUgEAvQAASUNDUBgCAAAAAAIYAAAAAAIQAABtbnRyUkdCIFhZWiAAAAAAAAAAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAAHRyWFlaAAABZAAAABRnWFlaAAABeAAAABRiWFlaAAABjAAAABRyVFJDAAABoAAAAChnVFJDAAABoAAAAChiVFJDAAABoAAAACh3dHB0AAAByAAAABRjcHJ0AAAB3AAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAFgAAAAcAHMAUgBHAEIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFhZWiAAAAAAAABvogAAOPUAAAOQWFlaIAAAAAAAAGKZAAC3hQAAGNpYWVogAAAAAAAAJKAAAA+EAAC2z3BhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABYWVogAAAAAAAA9tYAAQAAAADTLW1sdWMAAAAAAAAAAQAAAAxlblVTAAAAIAAAABwARwBvAG8AZwBsAGUAIABJAG4AYwAuACAAMgAwADEANlZQOCAMAgAAEBgAnQEqUwG+AD7tdq9WKacjo6ApeTAdiWlu3V2pH+f7u/IAoH2rH1nRrXDBpzw6L/sbG6FObW3oMT0LarMr9dSlvvTVICsv//hT3Bu/CnUglKumqQFZXtr6gC+9B0n3j0Ny3oca1uhfLIQpe84oDqWKroD2YPFCNXsjTKK6IUvHbnXb9t8avIt/x3Cn6v6yDTO66d8tcfWrie0q+Upj2wKItvtbLGxWz9ls/x2+1Y+t4cALmWxTD4PasfWjDeS12NCE3pLwKKVAAP7tkT/yY2i07WmtTRmUpbCf4gNK14ioTawbpbRGd+QXFmILDFyweCRdgdz/nNytipUHu9rUhVPx4nG5AA44PEeXGj/WDjvjGug/4HP0moRsP84Nfysi0xB2ij6H1BTy4EyC5F9bt14oc6PsTuCeSWmfgm3mRjQ2vtEUbKM+ELukFG9QYXS1zfoh8OKMHDggg6F1U5+YbWdnqPldaLC43HsbZ2IW1zStEeeGAKaxlwoAiMgavGh9QG/lY8VxkOfBKFEfRvnsc9y4dRBwEf0Og/38nNT6z3xQ/iJyPr6aQo+lpwvHLKsQ2BAUZQAJyKcWDBofqlGIJlLoaene47zACygAOjWZFfTqrdy0+QAACYJA5c5t2REhP+3v32F7AAAjhrGcbqwhbG79JcegZTjmOcAAWU+60XLJu5FeqAAA8vqsEAA=",
@@ -30,6 +32,15 @@ const animateDI = {
 };
 
 function Section1() {
+  // useLayoutEffect(() => {
+  //   const gradient = new Gradient();
+  //   gradient.initGradient("#gradient-canvas");
+  // }, []);
+  useEffect(() => {
+    const gradient = new Gradient();
+    gradient.initGradient("#gradient-canvas");
+  }, []);
+
   const themeMode = useSelector((state) => state.theme.mode);
   const selectedResume = useSelector((state) => state.section2.selectedResume);
   const section1Ref = useRef(null);
@@ -40,12 +51,13 @@ function Section1() {
 
   return (
     <Box
-      id="section-1"
+      id='section-1'
       ref={section1Ref}
       style={{ position: "fixed", height: "100vh", width: "100vw" }}
     >
+      <canvas id='gradient-canvas' data-transition-in />
       <Typography
-        variant="h2"
+        variant='h2'
         sx={{
           color: "white",
           zIndex: "999999",
@@ -95,15 +107,12 @@ function Section1() {
           filter: `${selectedResume.active ? "grayscale(0.8)" : "none"}`,
         }}
       >
-        {/* <Image
-          src={"/LiamWong_TokyoCity_Night.jpg"}
-          alt="night"
-          layout="fill"
-          objectFit="cover"
-          placeholder="blur"
-          blurDataURL={blurDataArr.url1}
-          priority
-          fetchpriority="high"
+        {/* <img
+          src={"/bgNight.jpeg"}
+          alt='night'
+          placeholder='blur'
+          fetchpriority='high'
+          style={{ objectFit: "cover", width: "100vw", height: "auto" }}
         /> */}
       </Box>
       <Box
@@ -116,17 +125,14 @@ function Section1() {
           filter: `${selectedResume.active ? "brightness(0.4)" : "none"}`,
         }}
         variants={animateDI}
-        initial="initial"
+        initial='initial'
         animate={`${themeMode === "light" ? "show" : "hide"}`}
       >
-        {/* <Image
-          src={"/LiamWong_TokyoCity_Day.jpg"}
-          alt="day"
-          layout="fill"
-          objectFit="cover"
-          placeholder="blur"
-          blurDataURL={blurDataArr.url2}
-          // fetchpriority="high"
+        {/* <img
+          src={"/bgDay.jpeg"}
+          alt='day'
+          placeholder='blur'
+          style={{ objectFit: "fill", width: "100vw", height: "auto" }}
         /> */}
       </Box>
       <Trigger ref={section1Trigger} />

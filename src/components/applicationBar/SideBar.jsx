@@ -11,7 +11,9 @@ import { currentPart } from "../../Features/globalUiVars/section2";
 import { memo } from "react";
 // import Image from "next/image";
 import ForumIcon from "@mui/icons-material/Forum";
-import { selectResume } from "../../Features/globalUiVars/section2";
+import CheckroomIcon from "@mui/icons-material/Checkroom";
+import RateReviewIcon from "@mui/icons-material/RateReview";
+import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 
 const Side = styled(Paper)(({ theme }) => ({
   background: `${
@@ -61,7 +63,7 @@ const SideBar = () => {
       }}
     >
       <Box
-        id="sidebar"
+        id='sidebar'
         sx={{
           position: "absolute",
           top: "50%",
@@ -96,24 +98,24 @@ const SideBar = () => {
             <KeyboardDoubleArrowUpOutlinedIcon />
           </IconButton>
           <IconButton onClick={() => eventHandler(2, 0)}>
-            <img width="30" height="30" src="/us.svg" alt="US flag" />
+            <AutoAwesomeIcon />
           </IconButton>
           <IconButton onClick={() => eventHandler(2, 1)}>
-            <img width="30" height="30" src="/fr.svg" alt="FR flag" />
+            <CheckroomIcon />
           </IconButton>
           <IconButton onClick={() => eventHandler(2, 2)}>
-            <img width="30" height="30" src="/ca.svg" alt="CA flag" />
-          </IconButton>
-          <IconButton onClick={() => eventHandler(3, 3)}>
             <ForumIcon />
           </IconButton>
-          <IconButton
+          <IconButton onClick={() => eventHandler(3, 3)}>
+            <KeyboardDoubleArrowDownOutlinedIcon />
+          </IconButton>
+          {/* <IconButton
             onClick={() => {
               eventHandler(4);
             }}
           >
             <KeyboardDoubleArrowDownOutlinedIcon />
-          </IconButton>
+          </IconButton> */}
         </Side>
       </Box>
     </Box>

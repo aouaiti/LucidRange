@@ -46,8 +46,6 @@ const child = {
 const Contained = ({ spanWidth }) => {
   /////////////////////////////////////// redux stuff
   const section2part = useSelector((state) => state.section2.part);
-  const sectionNumber = useSelector((state) => state.currentSection.Section);
-  const selectedResume = useSelector((state) => state.section2.selectedResume);
   const dispatchPart = useDispatch();
   /////////////////////////////////////// end redux stuff
   const container = useRef(null);
@@ -118,7 +116,7 @@ const Contained = ({ spanWidth }) => {
   //////////////////////////////////////////////////progress bar
   const tgang = useTransform(scrollYProgress, [0, 1], [0, 1.1]);
   const scaleProgress = useSpring(tgang, {
-    damping: 15,
+    damping: 5,
     mass: 0.27,
     stiffness: 35,
   });
@@ -133,13 +131,8 @@ const Contained = ({ spanWidth }) => {
     mass: 0.27,
     stiffness: 35,
   };
-  //sasuga watashi mouhahaha the moment u select a resume useEffect will capture the spring value
-  //and assigns it to x ; this is implemented the stop transition(due to scrolling and selecting at the same time)
+
   const spring = useSpring(transform, physics);
-  const [brakes, setBrakes] = useState(null);
-  useEffect(() => {
-    setBrakes(spring.get());
-  }, [selectedResume.active]);
 
   useEffect(() => {
     container && setScrollWidth(container.current.scrollWidth);
@@ -177,7 +170,7 @@ const Contained = ({ spanWidth }) => {
           minWidth: "100vw",
           height: "100vh",
           padding: "0 2.3rem",
-          x: selectedResume.active ? brakes : spring,
+          x: spring,
           // x: transform,
         }}
       >
@@ -214,10 +207,10 @@ const Contained = ({ spanWidth }) => {
           bottom: "0",
           left: "0",
           width: "10px",
-          background: "red",
+          background: "white",
           transformOrigin: "50%",
           scaleY: scaleProgress,
-          zIndex: "99",
+          zIndex: "9999",
         }}
         className='progress-bar'
       />

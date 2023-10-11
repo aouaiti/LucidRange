@@ -32,7 +32,8 @@ function ScrollTrigger() {
       () => dispatch(sectionIndex(currentSection + multiplier)),
       50
     );
-    return () => clearTimeout(sectoSec);
+    const reset = setTimeout(() => setMultiplier(0), 70);
+    return () => clearTimeout(sectoSec) && clearTimeout(reset);
   }, [multiplier]);
 
   // useEffect(() => {
@@ -73,7 +74,7 @@ function ScrollTrigger() {
     // if (multiplier === 0 || currentSection !== 3) return;
     // if (multiplier === 1 && section3Part === 4) return;
     // if (multiplier === -1 && section3Part === 0) return;
-    if (!idle) return;
+    if (!idle && section2Part !== 3) return;
     if (currentSection !== 2) return;
     const sec2p3 = setTimeout(() => dispatch(rotate(multiplier)), 50);
     const reset = setTimeout(() => setMultiplier(0), 70);

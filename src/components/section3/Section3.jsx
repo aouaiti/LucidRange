@@ -25,11 +25,11 @@ const Section3 = () => {
   const themeMode = useSelector((state) => state.theme.mode);
   const currentSection = useSelector((state) => state.currentSection.Section);
   const section2part = useSelector((state) => state.section2.part);
-  const { scrollYProgress } = useScroll();
-  const smoothScroll = useSpring(scrollYProgress, {
-    damping: 50,
-    stiffness: 400,
-  });
+  // const { scrollYProgress } = useScroll();
+  // const smoothScroll = useSpring(scrollYProgress, {
+  //   damping: 50,
+  //   stiffness: 400,
+  // });
   return (
     <AnimatePresence>
       {currentSection === 2 && section2part == 2 && (
@@ -53,8 +53,8 @@ const Section3 = () => {
               animate='animate'
               exit='hidden'
             ></Box>
-            <InnerHUD scrollProgress={smoothScroll} />
-            <OuterHUD scrollProgress={smoothScroll} />
+            {/* <InnerHUD scrollProgress={smoothScroll} />
+            <OuterHUD scrollProgress={smoothScroll} /> */}
             <Cube />
           </Box>
           <Box
